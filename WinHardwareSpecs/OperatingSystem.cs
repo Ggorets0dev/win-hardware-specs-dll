@@ -14,9 +14,9 @@ namespace WinHardwareSpecs
         private string _version;
         private string _serialNumber;
 
-        public string Name { get { return _name; } }
-        public string Version { get { return _version; } }
-        public string SerialNumber { get { return _serialNumber; } }
+        public string Name => _name;
+        public string Version => _version;
+        public string SerialNumber => _serialNumber;
 
         public OperatingSystem(string name, string version, string serialNumber)
         {

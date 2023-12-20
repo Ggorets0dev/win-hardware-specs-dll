@@ -17,10 +17,10 @@ namespace WinHardwareSpecs
         private byte _numberOfCores;
         private byte _numberOfLogicalProcessors;
 
-        public string Name {  get { return _name; } }
-        public string Description { get { return _description; } }
-        public string Manufacturer { get { return _manufacturer; } }
-        public ushort BaseClockSpeed {  get { return _baseClockSpeed; } }
+        public string Name => _name;
+        public string Description => _description;
+        public string Manufacturer => _manufacturer;
+        public ushort BaseClockSpeed => _baseClockSpeed;
 
         public CentralProcessorUnit(string name, string description, string manufacturer, ushort baseClockSpeed, byte numberOfCores, byte numberOfLogicalProcessors) 
         { 

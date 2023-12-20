@@ -17,7 +17,7 @@ namespace FunctionalityTest
             var physicalMemory = new PhysicalMemory(
                 partNumber: SpecMonitor.GetHardwareInfo(PhysicalMemory.systemName, "PartNumber")[0],
                 manufacturer: SpecMonitor.GetHardwareInfo(PhysicalMemory.systemName, "Manufacturer")[0],
-                capacity: ulong.Parse(SpecMonitor.GetHardwareInfo(PhysicalMemory.systemName, "Capacity")[0]),
+                bytesCapacity: ulong.Parse(SpecMonitor.GetHardwareInfo(PhysicalMemory.systemName, "Capacity")[0]),
                 speed: ushort.Parse(SpecMonitor.GetHardwareInfo(PhysicalMemory.systemName, "Speed")[0])
             );
 
@@ -39,7 +39,7 @@ namespace FunctionalityTest
             var gpu = new GraphicsProcessingUnit(
                 name: SpecMonitor.GetHardwareInfo(GraphicsProcessingUnit.systemName, "Name")[0],
                 description: SpecMonitor.GetHardwareInfo(GraphicsProcessingUnit.systemName, "VideoProcessor")[0],
-                ram: ulong.Parse(SpecMonitor.GetHardwareInfo(GraphicsProcessingUnit.systemName, "AdapterRAM")[0]),
+                bytesMemoryCapacity: ulong.Parse(SpecMonitor.GetHardwareInfo(GraphicsProcessingUnit.systemName, "AdapterRAM")[0]),
                 driverVersion: SpecMonitor.GetHardwareInfo(GraphicsProcessingUnit.systemName, "DriverVersion")[0]
             );
 
