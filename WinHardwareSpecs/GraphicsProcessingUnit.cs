@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WinHardwareSpecs
 {
-    public class GraphicsProcessingUnit
+    public class GraphicsProcessingUnit : IHardwareItem
     {
         static public readonly string systemName = "Win32_VideoController";
 

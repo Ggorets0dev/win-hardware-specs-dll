@@ -12,7 +12,20 @@ namespace FunctionalityTest
     {
         static void Main(string[] args)
         {
-            // Console.WriteLine(SpecMonitor.GetHardwareInfo("Win32_PhysicalMemory", "PartNumber")[0]);
+            //Console.WriteLine(SpecMonitor.GetHardwareInfo("Win32_PhysicalMemory", "MemoryType")[0]);
+
+            var physicalMemory = new PhysicalMemory(
+                partNumber: SpecMonitor.GetHardwareInfo(PhysicalMemory.systemName, "PartNumber")[0],
+                manufacturer: SpecMonitor.GetHardwareInfo(PhysicalMemory.systemName, "Manufacturer")[0],
+                capacity: ulong.Parse(SpecMonitor.GetHardwareInfo(PhysicalMemory.systemName, "Capacity")[0]),
+                speed: ushort.Parse(SpecMonitor.GetHardwareInfo(PhysicalMemory.systemName, "Speed")[0])
+            );
+
+            var os = new WinHardwareSpecs.OperatingSystem(
+                name: SpecMonitor.GetHardwareInfo(WinHardwareSpecs.OperatingSystem.systemName, "Caption")[0],
+                version: SpecMonitor.GetHardwareInfo(WinHardwareSpecs.OperatingSystem.systemName, "Version")[0],
+                serialNumber: SpecMonitor.GetHardwareInfo(WinHardwareSpecs.OperatingSystem.systemName, "SerialNumber")[0]
+            );
 
             var cpu = new CentralProcessorUnit(
                 name: SpecMonitor.GetHardwareInfo(CentralProcessorUnit.systemName, "Name")[0],
@@ -30,11 +43,19 @@ namespace FunctionalityTest
                 driverVersion: SpecMonitor.GetHardwareInfo(GraphicsProcessingUnit.systemName, "DriverVersion")[0]
             );
 
+            os.Print();
+
+            Console.WriteLine("\n------\n");
+
             cpu.Print();
 
             Console.WriteLine("\n------\n");
 
             gpu.Print();
+
+            Console.WriteLine("\n------\n");
+
+            physicalMemory.Print();
 
             Console.ReadLine();
         }

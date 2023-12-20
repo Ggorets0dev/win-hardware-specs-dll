@@ -37,7 +37,7 @@ namespace WinHardwareSpecs
             Console.WriteLine($"Модель: {_name}");
             Console.WriteLine($"Производитель: {_manufacturer}");
             Console.WriteLine($"Описание: {_description}");
-            Console.WriteLine($"Базовая скорость: {_baseClockSpeed} (герц) ~ {Math.Round(_baseClockSpeed / 1000.0, 2)} (гигагерц)");
+            Console.WriteLine($"Базовая скорость: {_baseClockSpeed} (мегагерц) ~ {Math.Round(_baseClockSpeed / 1000.0, 2)} (гигагерц)");
             Console.WriteLine($"Количество ядер: {_numberOfCores}");
             Console.WriteLine($"Количество потоков: {_numberOfLogicalProcessors}");
         }
