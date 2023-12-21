@@ -25,7 +25,7 @@ namespace WinHardwareSpecs
             _serialNumber = serialNumber;
         }
 
-        public void Print()
+        public virtual void Print()
         {
             Console.WriteLine($"Наименование: {_name}");
             Console.WriteLine($"Версия: {_version}");

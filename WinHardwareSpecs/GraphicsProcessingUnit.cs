@@ -28,7 +28,7 @@ namespace WinHardwareSpecs
             _driverVersion = driverVersion;
         }
 
-        public void Print() 
+        public virtual void Print() 
         {
             Console.WriteLine($"Модель: {_name}");
             Console.WriteLine($"Описание: {_description}");

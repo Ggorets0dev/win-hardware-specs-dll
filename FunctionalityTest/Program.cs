@@ -10,52 +10,33 @@ namespace FunctionalityTest
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            //Console.WriteLine(SpecMonitor.GetHardwareInfo("Win32_PhysicalMemory", "MemoryType")[0]);
+            // Console.WriteLine(SpecMonitor.GetHardwareInfo("Win32_PhysicalMemory", "Speed").Count);
 
-            var physicalMemory = new PhysicalMemory(
-                partNumber: SpecMonitor.GetHardwareInfo(PhysicalMemory.systemName, "PartNumber")[0],
-                manufacturer: SpecMonitor.GetHardwareInfo(PhysicalMemory.systemName, "Manufacturer")[0],
-                bytesCapacity: ulong.Parse(SpecMonitor.GetHardwareInfo(PhysicalMemory.systemName, "Capacity")[0]),
-                speed: ushort.Parse(SpecMonitor.GetHardwareInfo(PhysicalMemory.systemName, "Speed")[0])
-            );
+            foreach (var centralProcessingUnitObject in SpecMonitor.GetCentralProcessingUnits())
+            {
+                centralProcessingUnitObject.Print();
+                Console.WriteLine("\n-------------------------------\n");
+            }
 
-            var os = new WinHardwareSpecs.OperatingSystem(
-                name: SpecMonitor.GetHardwareInfo(WinHardwareSpecs.OperatingSystem.systemName, "Caption")[0],
-                version: SpecMonitor.GetHardwareInfo(WinHardwareSpecs.OperatingSystem.systemName, "Version")[0],
-                serialNumber: SpecMonitor.GetHardwareInfo(WinHardwareSpecs.OperatingSystem.systemName, "SerialNumber")[0]
-            );
+            foreach (var graphicalProcessingUnitObject in SpecMonitor.GetGraphicalProcessingUnits())
+            {
+                graphicalProcessingUnitObject.Print();
+                Console.WriteLine("\n-------------------------------\n");
+            }
 
-            var cpu = new CentralProcessorUnit(
-                name: SpecMonitor.GetHardwareInfo(CentralProcessorUnit.systemName, "Name")[0],
-                description: SpecMonitor.GetHardwareInfo(CentralProcessorUnit.systemName, "Description")[0],
-                manufacturer: SpecMonitor.GetHardwareInfo(CentralProcessorUnit.systemName, "Manufacturer")[0],
-                baseClockSpeed: ushort.Parse(SpecMonitor.GetHardwareInfo(CentralProcessorUnit.systemName, "CurrentClockSpeed")[0]),
-                numberOfCores: byte.Parse(SpecMonitor.GetHardwareInfo(CentralProcessorUnit.systemName, "NumberOfCores")[0]),
-                numberOfLogicalProcessors: byte.Parse(SpecMonitor.GetHardwareInfo(CentralProcessorUnit.systemName, "NumberOfLogicalProcessors")[0])
-            );
+            foreach (var physcialMemoryObject in SpecMonitor.GetPhysicalMemory())
+            {
+                physcialMemoryObject.Print();
+                Console.WriteLine("\n-------------------------------\n");
+            }
 
-            var gpu = new GraphicsProcessingUnit(
-                name: SpecMonitor.GetHardwareInfo(GraphicsProcessingUnit.systemName, "Name")[0],
-                description: SpecMonitor.GetHardwareInfo(GraphicsProcessingUnit.systemName, "VideoProcessor")[0],
-                bytesMemoryCapacity: ulong.Parse(SpecMonitor.GetHardwareInfo(GraphicsProcessingUnit.systemName, "AdapterRAM")[0]),
-                driverVersion: SpecMonitor.GetHardwareInfo(GraphicsProcessingUnit.systemName, "DriverVersion")[0]
-            );
-
-            os.Print();
-
-            Console.WriteLine("\n------\n");
-
-            cpu.Print();
-
-            Console.WriteLine("\n------\n");
-
-            gpu.Print();
-
-            Console.WriteLine("\n------\n");
-
-            physicalMemory.Print();
+            foreach (var operatingSystemObject in SpecMonitor.GetOperatingSystems())
+            {
+                operatingSystemObject.Print();
+                Console.WriteLine("\n-------------------------------\n");
+            }
 
             Console.ReadLine();
         }

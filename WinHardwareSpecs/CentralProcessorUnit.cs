@@ -13,31 +13,31 @@ namespace WinHardwareSpecs
         private string _name;
         private string _description;
         private string _manufacturer;
-        private ushort _baseClockSpeed;
+        private Frequency _baseClockSpeed;
         private byte _numberOfCores;
         private byte _numberOfLogicalProcessors;
 
         public string Name => _name;
         public string Description => _description;
         public string Manufacturer => _manufacturer;
-        public ushort BaseClockSpeed => _baseClockSpeed;
+        public Frequency BaseClockSpeed => _baseClockSpeed;
 
         public CentralProcessorUnit(string name, string description, string manufacturer, ushort baseClockSpeed, byte numberOfCores, byte numberOfLogicalProcessors) 
         { 
             _name = name;
             _description = description;
             _manufacturer = manufacturer;
-            _baseClockSpeed = baseClockSpeed;
+            _baseClockSpeed = new Frequency(baseClockSpeed);
             _numberOfCores = numberOfCores;
             _numberOfLogicalProcessors = numberOfLogicalProcessors;
         }
 
-        public void Print()
+        public virtual void Print()
         {
             Console.WriteLine($"Модель: {_name}");
             Console.WriteLine($"Производитель: {_manufacturer}");
             Console.WriteLine($"Описание: {_description}");
-            Console.WriteLine($"Базовая скорость: {_baseClockSpeed} (мегагерц) ~ {Math.Round(_baseClockSpeed / 1000.0, 2)} (гигагерц)");
+            Console.WriteLine($"Базовая скорость: {_baseClockSpeed.GetMegahertz()} (мегагерц) ~ {_baseClockSpeed.GetGigahertz()} (гигагерц)");
             Console.WriteLine($"Количество ядер: {_numberOfCores}");
             Console.WriteLine($"Количество потоков: {_numberOfLogicalProcessors}");
         }

@@ -13,27 +13,27 @@ namespace WinHardwareSpecs
         private string _partNumber;
         private string _manufacturer;
         private Capacity _capacity;
-        private ushort _speed;
+        private Frequency _clockSpeed;
 
         public string PartNumber => _partNumber;
         public string Manufacturer => _manufacturer;
         public Capacity Capacity => _capacity;
-        public ushort Speed => _speed;
+        public Frequency ClockSpeed => _clockSpeed;
 
-        public PhysicalMemory(string partNumber, string manufacturer, ulong bytesCapacity, ushort speed)
+        public PhysicalMemory(string partNumber, string manufacturer, ulong bytesCapacity, ushort clockSpeed)
         {
             _partNumber = partNumber;
             _manufacturer = manufacturer;   
             _capacity = new Capacity(bytesCapacity);
-            _speed = speed;
+            _clockSpeed = new Frequency(clockSpeed);
         }
 
-        public void Print()
+        public virtual void Print()
         {
             Console.WriteLine($"Производитель: {_manufacturer}");
             Console.WriteLine($"Серийный номер: {_partNumber}");
             Console.WriteLine($"Объем: {_capacity.GetBytes()} (байт) ~ {_capacity.GetMegabytes(accuracy: 2)} (мегабайт) ~ {_capacity.GetGigabytes(accuracy: 2)} (гигабайт)");
-            Console.WriteLine($"Скорость: {_speed} (мегагерц) ~ {Math.Round(_speed / 1000.0, 2)} (гигагерц)");
+            Console.WriteLine($"Скорость: {_clockSpeed.GetMegahertz()} (мегагерц) ~ {_clockSpeed.GetGigahertz()} (гигагерц)");
         }
     }
 }
