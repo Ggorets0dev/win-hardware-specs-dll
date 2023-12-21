@@ -1,7 +1,10 @@
-﻿namespace WinHardwareSpecs
+﻿using Newtonsoft.Json;
+
+namespace WinHardwareSpecs
 {
     internal interface IHardwareItem
     {
         public void Print();
+        public string ToJson();
     }
 }

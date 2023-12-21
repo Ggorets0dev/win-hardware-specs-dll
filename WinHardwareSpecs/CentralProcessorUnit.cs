@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -41,5 +42,7 @@ namespace WinHardwareSpecs
             Console.WriteLine($"Количество ядер: {_numberOfCores}");
             Console.WriteLine($"Количество потоков: {_numberOfLogicalProcessors}");
         }
+
+        public string ToJson() => JsonConvert.SerializeObject(this, Formatting.Indented);
     }
 }

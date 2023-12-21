@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Management;
 
@@ -6,6 +7,16 @@ namespace WinHardwareSpecs
 {
     static public class SpecMonitor
     {
+        public class Specification
+        {
+            public List<CentralProcessorUnit> cpuObjects;
+            public List<GraphicsProcessingUnit> gpuObjects;
+            public List<PhysicalMemory> ramOjbects;
+            public List<OperatingSystem> osObjects;
+
+            public string ToJson() => JsonConvert.SerializeObject(this, Formatting.Indented);
+        }
+
         static private List<ManagementObject> GetManagementObjects(string win32Class)
         {
             var objects = new List<ManagementObject>();
@@ -28,6 +39,17 @@ namespace WinHardwareSpecs
         }
 
         static private string ProcessSpec(ManagementObject obj, string spec) => obj[spec].ToString().Trim();
+
+        static public Specification GetSpecification()
+        {
+            return new Specification
+            {
+                cpuObjects = GetCentralProcessingUnits(),
+                gpuObjects = GetGraphicalProcessingUnits(),
+                ramOjbects = GetPhysicalMemory(),
+                osObjects = GetOperatingSystems(),
+            };
+        }
 
         static public List<string> GetHardwareInfo(string win32Class, string itemField)
         {
@@ -57,7 +79,7 @@ namespace WinHardwareSpecs
                 foreach (ManagementObject currentManagementObject in GetManagementObjects(OperatingSystem.systemName))
                 {
                     var osObject = new OperatingSystem(
-                        name: ProcessSpec(currentManagementObject, "Name"),
+                        name: ProcessSpec(currentManagementObject, "Caption"),
                         version: ProcessSpec(currentManagementObject, "Version"),
                         serialNumber: ProcessSpec(currentManagementObject, "SerialNumber")
                     );

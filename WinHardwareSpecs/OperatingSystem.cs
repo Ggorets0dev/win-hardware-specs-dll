@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace WinHardwareSpecs
 {
@@ -14,8 +15,13 @@ namespace WinHardwareSpecs
         private string _version;
         private string _serialNumber;
 
+        [JsonProperty("name")]
         public string Name => _name;
+
+        [JsonProperty("version")]
         public string Version => _version;
+
+        [JsonProperty("serial_number")]
         public string SerialNumber => _serialNumber;
 
         public OperatingSystem(string name, string version, string serialNumber)
@@ -31,5 +37,7 @@ namespace WinHardwareSpecs
             Console.WriteLine($"Версия: {_version}");
             Console.WriteLine($"Серийный номер: {_serialNumber}");
         }
+
+        public string ToJson() => JsonConvert.SerializeObject(this, Formatting.Indented);
     }
 }

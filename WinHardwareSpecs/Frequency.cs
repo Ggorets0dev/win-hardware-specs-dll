@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,10 @@ namespace WinHardwareSpecs
 {
     public class Frequency
     {
+        [JsonProperty("megahertz")]
         private ushort _megahertz;
+
+        [JsonProperty("gigahertz")]
         private double _gigahertz;
         
         public ushort GetMegahertz() => _megahertz;
@@ -17,7 +21,7 @@ namespace WinHardwareSpecs
         public Frequency(ushort megahertz)
         {
             _megahertz = megahertz;
-            _gigahertz = megahertz / 1000;
+            _gigahertz = megahertz / 1000.0;
         }
     }
 }

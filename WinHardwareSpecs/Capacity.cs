@@ -1,11 +1,17 @@
 ﻿using System;
+using Newtonsoft.Json;
 
 namespace WinHardwareSpecs
 {
     public class Capacity
     {
+        [JsonProperty("bytes")]
         private ulong _bytes;
+
+        [JsonProperty("megabytes")]
         private double _megabytes;
+
+        [JsonProperty("gigabytes")]
         private double _gigabytes;
 
         public ulong GetBytes() => _bytes;
@@ -16,7 +22,7 @@ namespace WinHardwareSpecs
         {
             _bytes = bytes;
             _megabytes = bytes / Math.Pow(1024, 2);
-            _gigabytes = _megabytes / 1024;
+            _gigabytes = _megabytes / 1024.0;
         }
     }
 }
