@@ -7,16 +7,6 @@ namespace WinHardwareSpecs
 {
     static public class SpecMonitor
     {
-        public class Specification
-        {
-            public List<CentralProcessorUnit> cpuObjects;
-            public List<GraphicsProcessingUnit> gpuObjects;
-            public List<PhysicalMemory> ramOjbects;
-            public List<OperatingSystem> osObjects;
-
-            public string ToJson() => JsonConvert.SerializeObject(this, Formatting.Indented);
-        }
-
         static private List<ManagementObject> GetManagementObjects(string win32Class)
         {
             var objects = new List<ManagementObject>();
@@ -42,13 +32,12 @@ namespace WinHardwareSpecs
 
         static public Specification GetSpecification()
         {
-            return new Specification
-            {
-                cpuObjects = GetCentralProcessingUnits(),
-                gpuObjects = GetGraphicalProcessingUnits(),
-                ramOjbects = GetPhysicalMemory(),
-                osObjects = GetOperatingSystems(),
-            };
+            return new Specification(
+                cpuObjects: GetCentralProcessingUnits(),
+                gpuObjects: GetGraphicalProcessingUnits(),
+                ramOjbects: GetPhysicalMemory(),
+                osObjects: GetOperatingSystems()
+            );
         }
 
         static public List<string> GetHardwareInfo(string win32Class, string itemField)

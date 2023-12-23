@@ -13,6 +13,8 @@ namespace FunctionalityTest
         static void Main()
         {
             var specification = SpecMonitor.GetSpecification();
+
+            specification.Print();
             Console.WriteLine(specification.ToJson());
 
             Console.ReadLine();
