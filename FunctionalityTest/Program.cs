@@ -15,6 +15,7 @@ namespace FunctionalityTest
             var specification = SpecMonitor.GetSpecification();
 
             specification.Print();
+            Console.WriteLine("\n");
             Console.WriteLine(specification.ToJson());
 
             Console.ReadLine();

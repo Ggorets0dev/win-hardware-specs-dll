@@ -34,21 +34,45 @@ namespace WinHardwareSpecs
             _osObjects = osObjects;
         }
 
-        public virtual void Print()
+        public virtual void Print() => Console.WriteLine(ToString());
+
+        public override string ToString()
         {
-            void PrintUnits(List<IHardwareItem> units)
+            string UnitsToString(List<IHardwareItem> units)
             {
-                foreach (var unit in units)
+                string result = "";
+
+                int currentUnitInx = 0;
+                int unitsCount = units.Count();
+
+                while (currentUnitInx < unitsCount)
                 {
-                    unit.Print();
-                    Console.WriteLine("\n----------\n");
+                    result += units[currentUnitInx].ToString();
+
+                    if (currentUnitInx != unitsCount - 1) 
+                        result += "\n----------\n";
+
+                    currentUnitInx += 1;
                 }
+
+                return result;
             }
 
-            PrintUnits(_cpuObjects.Cast<IHardwareItem>().ToList());
-            PrintUnits(_gpuObjects.Cast<IHardwareItem>().ToList());
-            PrintUnits(_ramOjbects.Cast<IHardwareItem>().ToList());
-            PrintUnits(_osObjects.Cast<IHardwareItem>().ToList());
+            string result = UnitsToString(_cpuObjects.Cast<IHardwareItem>().ToList());
+
+            result += "\n\n";
+
+            result += UnitsToString(_gpuObjects.Cast<IHardwareItem>().ToList());
+
+            result += "\n\n";
+
+            result += UnitsToString(_ramOjbects.Cast<IHardwareItem>().ToList());
+
+            result += "\n\n";
+
+            result += UnitsToString(_osObjects.Cast<IHardwareItem>().ToList());
+
+            return result;
         }
 
         public string ToJson() => JsonConvert.SerializeObject(this, Formatting.Indented);
