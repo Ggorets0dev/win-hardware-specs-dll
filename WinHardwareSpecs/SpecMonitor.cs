@@ -136,15 +136,15 @@ namespace WinHardwareSpecs
             return graphicsProcessingUnits;
         }
 
-        static public List<CentralProcessorUnit> GetCentralProcessingUnits()
+        static public List<CentralProcessingUnit> GetCentralProcessingUnits()
         {
-            var centralProcessingUnits = new List<CentralProcessorUnit>();
+            var centralProcessingUnits = new List<CentralProcessingUnit>();
 
             try
             {
-                foreach (ManagementObject currentManagementObject in GetManagementObjects(CentralProcessorUnit.systemName))
+                foreach (ManagementObject currentManagementObject in GetManagementObjects(CentralProcessingUnit.systemName))
                 {
-                    var centralProcessingUnitObject = new CentralProcessorUnit(
+                    var centralProcessingUnitObject = new CentralProcessingUnit(
                         name: ProcessSpec(currentManagementObject, "Name"),
                         description: ProcessSpec(currentManagementObject, "Description"),
                         baseClockSpeed: ushort.Parse(ProcessSpec(currentManagementObject, "CurrentClockSpeed")),

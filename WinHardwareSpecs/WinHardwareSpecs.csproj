@@ -47,7 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Capacity.cs" />
-    <Compile Include="CentralProcessorUnit.cs" />
+    <Compile Include="CentralProcessingUnit.cs" />
     <Compile Include="Frequency.cs" />
     <Compile Include="GraphicsProcessingUnit.cs" />
     <Compile Include="IHardwareItem.cs" />

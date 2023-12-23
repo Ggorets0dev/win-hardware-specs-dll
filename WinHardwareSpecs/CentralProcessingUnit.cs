@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WinHardwareSpecs
 {
-    public class CentralProcessorUnit : IHardwareItem
+    public class CentralProcessingUnit : IHardwareItem
     {
         static public readonly string systemName = "Win32_Processor";
 
@@ -23,7 +23,7 @@ namespace WinHardwareSpecs
         public string Manufacturer => _manufacturer;
         public Frequency BaseClockSpeed => _baseClockSpeed;
 
-        public CentralProcessorUnit(string name, string description, string manufacturer, ushort baseClockSpeed, byte numberOfCores, byte numberOfLogicalProcessors) 
+        public CentralProcessingUnit(string name, string description, string manufacturer, ushort baseClockSpeed, byte numberOfCores, byte numberOfLogicalProcessors) 
         { 
             _name = name;
             _description = description;

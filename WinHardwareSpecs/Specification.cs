@@ -9,13 +9,13 @@ namespace WinHardwareSpecs
 {
     public class Specification : IHardwareItem
     {
-        private List<CentralProcessorUnit> _cpuObjects;
+        private List<CentralProcessingUnit> _cpuObjects;
         private List<GraphicsProcessingUnit> _gpuObjects;
         private List<PhysicalMemory> _ramOjbects;
         private List<OperatingSystem> _osObjects;
 
         [JsonProperty("cpu_units")]
-        public List<CentralProcessorUnit> CpuUnits => _cpuObjects;
+        public List<CentralProcessingUnit> CpuUnits => _cpuObjects;
 
         [JsonProperty("gpu_units")]
         public List<GraphicsProcessingUnit> GpuUnits => _gpuObjects;
@@ -26,7 +26,7 @@ namespace WinHardwareSpecs
         [JsonProperty("os_units")]
         public List<OperatingSystem> OsUnits => _osObjects;
 
-        public Specification(List<CentralProcessorUnit> cpuObjects, List<GraphicsProcessingUnit> gpuObjects, List<PhysicalMemory> ramOjbects, List<OperatingSystem> osObjects)
+        public Specification(List<CentralProcessingUnit> cpuObjects, List<GraphicsProcessingUnit> gpuObjects, List<PhysicalMemory> ramOjbects, List<OperatingSystem> osObjects)
         {
             _cpuObjects = cpuObjects;
             _gpuObjects = gpuObjects;
