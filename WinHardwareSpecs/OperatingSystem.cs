@@ -31,11 +31,15 @@ namespace WinHardwareSpecs
             _serialNumber = serialNumber;
         }
 
-        public virtual void Print()
+        public virtual void Print() => Console.WriteLine(ToString());
+
+        public override string ToString()
         {
-            Console.WriteLine($"Наименование: {_name}");
-            Console.WriteLine($"Версия: {_version}");
-            Console.WriteLine($"Серийный номер: {_serialNumber}");
+            string result = "Характеристики операционной системы\n";
+            result += $"Наименование: {_name}\n";
+            result += $"Версия: {_version}\n";
+            result += $"Серийный номер: {_serialNumber}";
+            return result;
         }
 
         public string ToJson() => JsonConvert.SerializeObject(this, Formatting.Indented);

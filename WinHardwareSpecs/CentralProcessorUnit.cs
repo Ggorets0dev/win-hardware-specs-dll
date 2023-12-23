@@ -33,14 +33,18 @@ namespace WinHardwareSpecs
             _numberOfLogicalProcessors = numberOfLogicalProcessors;
         }
 
-        public virtual void Print()
+        public virtual void Print() => Console.WriteLine(ToString());
+
+        public override string ToString()
         {
-            Console.WriteLine($"Модель: {_name}");
-            Console.WriteLine($"Производитель: {_manufacturer}");
-            Console.WriteLine($"Описание: {_description}");
-            Console.WriteLine($"Базовая скорость: {_baseClockSpeed.GetMegahertz()} (мегагерц) ~ {_baseClockSpeed.GetGigahertz()} (гигагерц)");
-            Console.WriteLine($"Количество ядер: {_numberOfCores}");
-            Console.WriteLine($"Количество потоков: {_numberOfLogicalProcessors}");
+            string result = "Характеристики ЦПУ\n";
+           result += $"Модель: {_name}\n";
+           result += $"Производитель: {_manufacturer}\n";
+           result += $"Описание: {_description}\n";
+           result += $"Базовая скорость: {_baseClockSpeed.GetMegahertz()} (мегагерц) ~ {_baseClockSpeed.GetGigahertz()} (гигагерц)\n";
+           result += $"Количество ядер: {_numberOfCores}\n";
+           result += $"Количество потоков: {_numberOfLogicalProcessors}";
+            return result;
         }
 
         public string ToJson() => JsonConvert.SerializeObject(this, Formatting.Indented);

@@ -14,9 +14,16 @@ namespace WinHardwareSpecs
         private List<PhysicalMemory> _ramOjbects;
         private List<OperatingSystem> _osObjects;
 
+        [JsonProperty("cpu_units")]
         public List<CentralProcessorUnit> CpuUnits => _cpuObjects;
+
+        [JsonProperty("gpu_units")]
         public List<GraphicsProcessingUnit> GpuUnits => _gpuObjects;
+
+        [JsonProperty("ram_units")]
         public List<PhysicalMemory> RamUnits => _ramOjbects;
+
+        [JsonProperty("os_units")]
         public List<OperatingSystem> OsUnits => _osObjects;
 
         public Specification(List<CentralProcessorUnit> cpuObjects, List<GraphicsProcessingUnit> gpuObjects, List<PhysicalMemory> ramOjbects, List<OperatingSystem> osObjects)

@@ -36,12 +36,16 @@ namespace WinHardwareSpecs
             _driverVersion = driverVersion;
         }
 
-        public virtual void Print() 
+        public virtual void Print() => Console.WriteLine(ToString());
+
+        public override string ToString()
         {
-            Console.WriteLine($"Модель: {_name}");
-            Console.WriteLine($"Описание: {_description}");
-            Console.WriteLine($"Объем видеопамяти: {_memoryCapacity.GetBytes()} (байт) ~ {_memoryCapacity.GetMegabytes(accuracy: 2)} (мегабайт) ~ {_memoryCapacity.GetGigabytes(accuracy: 2)} (гигабайт)");
-            Console.WriteLine($"Версия драйвера: {_driverVersion}");
+            string result = "Характеристики ГПУ\n";
+            result += $"Модель: {_name}\n";
+            result += $"Описание: {_description}\n";
+            result += $"Объем видеопамяти: {_memoryCapacity.GetBytes()} (байт) ~ {_memoryCapacity.GetMegabytes(accuracy: 2)} (мегабайт) ~ {_memoryCapacity.GetGigabytes(accuracy: 2)} (гигабайт)\n";
+            result += $"Версия драйвера: {_driverVersion}";
+            return result;
         }
 
         public string ToJson() => JsonConvert.SerializeObject(this, Formatting.Indented);

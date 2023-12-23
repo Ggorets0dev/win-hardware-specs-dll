@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace WinHardwareSpecs
 {
@@ -36,14 +37,17 @@ namespace WinHardwareSpecs
             _clockSpeed = new Frequency(clockSpeed);
         }
 
-        public virtual void Print()
+        public virtual void Print() => Console.WriteLine(ToString());
+
+        public override string ToString()
         {
-            Console.WriteLine($"Производитель: {_manufacturer}");
-            Console.WriteLine($"Серийный номер: {_partNumber}");
-            Console.WriteLine($"Объем: {_capacity.GetBytes()} (байт) ~ {_capacity.GetMegabytes(accuracy: 2)} (мегабайт) ~ {_capacity.GetGigabytes(accuracy: 2)} (гигабайт)");
-            Console.WriteLine($"Скорость: {_clockSpeed.GetMegahertz()} (мегагерц) ~ {_clockSpeed.GetGigahertz()} (гигагерц)");
+            string result = "Характеристики оперативной памяти\n";
+            result += $"Серийный номер: {_partNumber}\n";
+            result += $"Объем: {_capacity.GetBytes()} (байт) ~ {_capacity.GetMegabytes(accuracy: 2)} (мегабайт) ~ {_capacity.GetGigabytes(accuracy: 2)} (гигабайт)\n";
+            result += $"Скорость: {_clockSpeed.GetMegahertz()} (мегагерц) ~ {_clockSpeed.GetGigahertz()} (гигагерц)";
+            return result;
         }
 
-        public string ToJson() => JsonConvert.SerializeObject(this, Formatting.Indented);
+        public virtual string ToJson() => JsonConvert.SerializeObject(this, Formatting.Indented);
     }
 }

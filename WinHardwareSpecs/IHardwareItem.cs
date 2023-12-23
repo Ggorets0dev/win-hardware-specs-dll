@@ -6,5 +6,6 @@ namespace WinHardwareSpecs
     {
         public void Print();
         public string ToJson();
+        public string ToString();
     }
 }
