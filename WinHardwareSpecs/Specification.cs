@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WinHardwareSpecs
 {
-    public class Specification : IHardwareItem
+    public class Specification : HardwareItem
     {
         private List<CentralProcessingUnit> _cpuObjects;
         private List<GraphicsProcessingUnit> _gpuObjects;
@@ -34,7 +34,7 @@ namespace WinHardwareSpecs
             _osObjects = osObjects;
         }
 
-        public virtual void Print() => Console.WriteLine(ToString());
+        public override void Print() => Console.WriteLine(ToString());
 
         public override string ToString()
         {
@@ -58,23 +58,25 @@ namespace WinHardwareSpecs
                 return result;
             }
 
-            string result = UnitsToString(_cpuObjects.Cast<IHardwareItem>().ToList());
+            string result = string.Empty;
+            string gpuUnits = UnitsToString(_gpuObjects.Cast<IHardwareItem>().ToList());
+            string cpuUnits = UnitsToString(_cpuObjects.Cast<IHardwareItem>().ToList());
+            string ramUnits = UnitsToString(_ramOjbects.Cast<IHardwareItem>().ToList());
+            string osUnits = UnitsToString(_osObjects.Cast<IHardwareItem>().ToList());
 
-            result += "\n\n";
+            if (cpuUnits.Length > 0)
+                result += (cpuUnits + "\n\n");
 
-            result += UnitsToString(_gpuObjects.Cast<IHardwareItem>().ToList());
+            if (gpuUnits.Length > 0)
+                result += (gpuUnits + "\n\n");
 
-            result += "\n\n";
+            if (ramUnits.Length > 0)
+                result += (ramUnits + "\n\n");
 
-            result += UnitsToString(_ramOjbects.Cast<IHardwareItem>().ToList());
-
-            result += "\n\n";
-
-            result += UnitsToString(_osObjects.Cast<IHardwareItem>().ToList());
+            if (osUnits.Length > 0)
+                result += osUnits;
 
             return result;
         }
-
-        public string ToJson() => JsonConvert.SerializeObject(this, Formatting.Indented);
     }
 }

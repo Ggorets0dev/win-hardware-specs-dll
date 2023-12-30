@@ -28,7 +28,16 @@ namespace WinHardwareSpecs
             return objects;
         }
 
-        static private string ProcessSpec(ManagementObject obj, string spec) => obj[spec].ToString().Trim();
+        static private string ProcessSpec(ManagementObject obj, string spec)
+        {
+            var characteristic = obj[spec];
+
+            if (characteristic != null) 
+                return characteristic.ToString().Trim();
+
+            else
+                return null;
+        }
 
         static public Specification GetSpecification()
         {
@@ -118,11 +127,20 @@ namespace WinHardwareSpecs
             {
                 foreach (ManagementObject currentManagementObject in GetManagementObjects(GraphicsProcessingUnit.systemName))
                 {
+                    string name = ProcessSpec(currentManagementObject, "Name");
+                    string description = ProcessSpec(currentManagementObject, "VideoProcessor");
+                    string driverVersion = ProcessSpec(currentManagementObject, "DriverVersion");
+
+                    ulong bytesMemoryCapacity;
+                    string bytesMemoryCapacityBuffer = ProcessSpec(currentManagementObject, "AdapterRAM");
+                    
+                    ulong.TryParse(bytesMemoryCapacityBuffer, out bytesMemoryCapacity);
+
                     var graphicalProcessingUnitObject = new GraphicsProcessingUnit(
-                        name: ProcessSpec(currentManagementObject, "Name"),
-                        description: ProcessSpec(currentManagementObject, "VideoProcessor"),
-                        bytesMemoryCapacity: ulong.Parse(ProcessSpec(currentManagementObject, "AdapterRAM")),
-                        driverVersion: ProcessSpec(currentManagementObject, "DriverVersion")
+                        name: name,
+                        description: description,
+                        bytesMemoryCapacity: bytesMemoryCapacity,
+                        driverVersion: driverVersion
                     );
 
                     graphicsProcessingUnits.Add(graphicalProcessingUnitObject);

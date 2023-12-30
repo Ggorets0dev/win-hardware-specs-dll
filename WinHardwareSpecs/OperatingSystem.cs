@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace WinHardwareSpecs
 {
-    public class OperatingSystem : IHardwareItem
+    public class OperatingSystem : HardwareItem
     {
         static public readonly string systemName = "Win32_OperatingSystem";
 
@@ -31,17 +31,17 @@ namespace WinHardwareSpecs
             _serialNumber = serialNumber;
         }
 
-        public virtual void Print() => Console.WriteLine(ToString());
+        public override void Print() => Console.WriteLine(ToString());
 
         public override string ToString()
         {
             string result = "Характеристики операционной системы\n";
-            result += $"Наименование: {_name}\n";
-            result += $"Версия: {_version}\n";
-            result += $"Серийный номер: {_serialNumber}";
+            
+            result += $"Наименование: {ProccessProperty(ref _name)}\n";
+            result += $"Версия: {ProccessProperty(ref _version)}\n";
+            result += $"Серийный номер: {ProccessProperty(ref _serialNumber)}";
+            
             return result;
         }
-
-        public string ToJson() => JsonConvert.SerializeObject(this, Formatting.Indented);
     }
 }

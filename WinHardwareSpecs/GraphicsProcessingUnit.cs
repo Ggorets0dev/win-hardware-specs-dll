@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WinHardwareSpecs
 {
-    public class GraphicsProcessingUnit : IHardwareItem
+    public class GraphicsProcessingUnit : HardwareItem
     {
         static public readonly string systemName = "Win32_VideoController";
 
@@ -36,18 +36,18 @@ namespace WinHardwareSpecs
             _driverVersion = driverVersion;
         }
 
-        public virtual void Print() => Console.WriteLine(ToString());
+        public override void Print() => Console.WriteLine(ToString());
 
         public override string ToString()
         {
             string result = "Характеристики ГПУ\n";
-            result += $"Модель: {_name}\n";
-            result += $"Описание: {_description}\n";
-            result += $"Объем видеопамяти: {_memoryCapacity.GetBytes()} (байт) ~ {_memoryCapacity.GetMegabytes(accuracy: 2)} (мегабайт) ~ {_memoryCapacity.GetGigabytes(accuracy: 2)} (гигабайт)\n";
-            result += $"Версия драйвера: {_driverVersion}";
+            
+            result += $"Модель: {ProccessProperty(ref _name)}\n";
+            result += $"Описание: {ProccessProperty(ref _description)}\n";
+            result += $"Объем видеопамяти: {_memoryCapacity.GetGigabytes(accuracy: 2)} (гигабайт) ~ {_memoryCapacity.GetMegabytes(accuracy: 2)} (мегабайт) ~ {_memoryCapacity.GetBytes()} (байт)\n";
+            result += $"Версия драйвера: {ProccessProperty(ref _driverVersion)}";
+            
             return result;
         }
-
-        public string ToJson() => JsonConvert.SerializeObject(this, Formatting.Indented);
     }
 }

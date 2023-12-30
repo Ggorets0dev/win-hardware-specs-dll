@@ -8,7 +8,7 @@ using System.Xml.Linq;
 
 namespace WinHardwareSpecs
 {
-    public class PhysicalMemory : IHardwareItem
+    public class PhysicalMemory : HardwareItem
     {
         static public readonly string systemName = "Win32_PhysicalMemory";
 
@@ -37,17 +37,17 @@ namespace WinHardwareSpecs
             _clockSpeed = new Frequency(clockSpeed);
         }
 
-        public virtual void Print() => Console.WriteLine(ToString());
+        public override void Print() => Console.WriteLine(ToString());
 
         public override string ToString()
         {
             string result = "Характеристики оперативной памяти\n";
-            result += $"Серийный номер: {_partNumber}\n";
-            result += $"Объем: {_capacity.GetBytes()} (байт) ~ {_capacity.GetMegabytes(accuracy: 2)} (мегабайт) ~ {_capacity.GetGigabytes(accuracy: 2)} (гигабайт)\n";
-            result += $"Скорость: {_clockSpeed.GetMegahertz()} (мегагерц) ~ {_clockSpeed.GetGigahertz()} (гигагерц)";
+            
+            result += $"Серийный номер: {ProccessProperty(ref _partNumber)}\n";
+            result += $"Объем: {_capacity.GetGigabytes(accuracy: 2)} (гигабайт) ~ {_capacity.GetMegabytes(accuracy: 2)} (мегабайт) ~ {_capacity.GetBytes()} (байт)\n";
+            result += $"Скорость: {_clockSpeed.GetGigahertz()} (гигагерц) ~ {_clockSpeed.GetMegahertz()} (мегагерц)";
+            
             return result;
         }
-
-        public virtual string ToJson() => JsonConvert.SerializeObject(this, Formatting.Indented);
     }
 }

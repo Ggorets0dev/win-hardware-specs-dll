@@ -50,6 +50,7 @@
     <Compile Include="CentralProcessingUnit.cs" />
     <Compile Include="Frequency.cs" />
     <Compile Include="GraphicsProcessingUnit.cs" />
+    <Compile Include="HardwareItem.cs" />
     <Compile Include="IHardwareItem.cs" />
     <Compile Include="OperatingSystem.cs" />
     <Compile Include="PhysicalMemory.cs" />

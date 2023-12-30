@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WinHardwareSpecs
 {
-    public class CentralProcessingUnit : IHardwareItem
+    public class CentralProcessingUnit : HardwareItem
     {
         static public readonly string systemName = "Win32_Processor";
 
@@ -33,20 +33,20 @@ namespace WinHardwareSpecs
             _numberOfLogicalProcessors = numberOfLogicalProcessors;
         }
 
-        public virtual void Print() => Console.WriteLine(ToString());
+        public override void Print() => Console.WriteLine(ToString());
 
         public override string ToString()
         {
             string result = "Характеристики ЦПУ\n";
-           result += $"Модель: {_name}\n";
-           result += $"Производитель: {_manufacturer}\n";
-           result += $"Описание: {_description}\n";
-           result += $"Базовая скорость: {_baseClockSpeed.GetMegahertz()} (мегагерц) ~ {_baseClockSpeed.GetGigahertz()} (гигагерц)\n";
-           result += $"Количество ядер: {_numberOfCores}\n";
-           result += $"Количество потоков: {_numberOfLogicalProcessors}";
+            
+            result += $"Модель: {ProccessProperty(ref _name)}\n";
+            result += $"Производитель: {ProccessProperty(ref _manufacturer)}\n";
+            result += $"Описание: {ProccessProperty(ref _description)}\n";
+            result += $"Базовая скорость: {_baseClockSpeed.GetGigahertz()} (гигагерц) ~ {_baseClockSpeed.GetMegahertz()} (мегагерц)\n";
+            result += $"Количество ядер: {_numberOfCores}\n";
+            result += $"Количество потоков: {_numberOfLogicalProcessors}";
+            
             return result;
         }
-
-        public string ToJson() => JsonConvert.SerializeObject(this, Formatting.Indented);
     }
 }
