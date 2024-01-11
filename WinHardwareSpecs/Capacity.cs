@@ -6,23 +6,29 @@ namespace WinHardwareSpecs
     public class Capacity
     {
         [JsonProperty("bytes")]
-        private ulong _bytes;
+        public ulong Bytes { get; set; }
 
         [JsonProperty("megabytes")]
-        private double _megabytes;
+        public double Megabytes { get; set; }
 
         [JsonProperty("gigabytes")]
-        private double _gigabytes;
+        public double Gigabytes { get; set; }
 
-        public ulong GetBytes() => _bytes;
-        public double GetMegabytes(sbyte accuracy = 2) => accuracy != -1 ? Math.Round(_megabytes, accuracy) : _megabytes;
-        public double GetGigabytes(sbyte accuracy = 2) => accuracy != -1 ? Math.Round(_gigabytes, accuracy) : _gigabytes;
+        public double GetMegabytes(sbyte accuracy = 2) => accuracy != -1 ? Math.Round(Megabytes, accuracy) : Megabytes;
+        public double GetGigabytes(sbyte accuracy = 2) => accuracy != -1 ? Math.Round(Gigabytes, accuracy) : Gigabytes;
 
         public Capacity(ulong bytes) 
         {
-            _bytes = bytes;
-            _megabytes = bytes / Math.Pow(1024, 2);
-            _gigabytes = _megabytes / 1024.0;
+            Bytes = bytes;
+            Megabytes = bytes / Math.Pow(1024, 2);
+            Gigabytes = Megabytes / 1024.0;
+        }
+
+        public Capacity()
+        {
+            Bytes = 0;
+            Megabytes = 0;
+            Gigabytes = 0;
         }
     }
 }

@@ -11,41 +11,36 @@ namespace WinHardwareSpecs
     {
         static public readonly string systemName = "Win32_VideoController";
 
-        private string _name;
-        private string _description;
-        private Capacity _memoryCapacity;
-        private string _driverVersion;
-
         [JsonProperty("name")]
-        public string Name => _name;
+        public string Name { get; set; }
 
-        [JsonProperty("description")]
-        public string Description => _description;
+    [JsonProperty("description")]
+        public string Description { get; set; }
 
         [JsonProperty("memory_capacity")]
-        public Capacity MemoryCapacity => _memoryCapacity;
+        public Capacity MemoryCapacity { get; set; }
 
         [JsonProperty("driver_version")]
-        public string DriverVersion => _driverVersion;
+        public string DriverVersion { get; set; }
 
         public GraphicsProcessingUnit(string name, string description, ulong bytesMemoryCapacity, string driverVersion) 
         {
-            _name = name;
-            _description = description;
-            _memoryCapacity = new Capacity(bytesMemoryCapacity);
-            _driverVersion = driverVersion;
+            Name = name;
+            Description = description;
+            MemoryCapacity = new Capacity(bytesMemoryCapacity);
+            DriverVersion = driverVersion;
         }
 
-        public override void Print() => Console.WriteLine(ToString());
+        public GraphicsProcessingUnit() { }
 
         public override string ToString()
         {
             string result = "Характеристики ГПУ\n";
             
-            result += $"Модель: {ProccessProperty(ref _name)}\n";
-            result += $"Описание: {ProccessProperty(ref _description)}\n";
-            result += $"Объем видеопамяти: {_memoryCapacity.GetGigabytes(accuracy: 2)} (гигабайт) ~ {_memoryCapacity.GetMegabytes(accuracy: 2)} (мегабайт) ~ {_memoryCapacity.GetBytes()} (байт)\n";
-            result += $"Версия драйвера: {ProccessProperty(ref _driverVersion)}";
+            result += $"Модель: {ProccessProperty(Name)}\n";
+            result += $"Описание: {ProccessProperty(Description)}\n";
+            result += $"Объем видеопамяти: {MemoryCapacity.GetGigabytes(accuracy: 2)} (гигабайт) ~ {MemoryCapacity.GetMegabytes(accuracy: 2)} (мегабайт) ~ {MemoryCapacity.Bytes} (байт)\n";
+            result += $"Версия драйвера: {ProccessProperty(DriverVersion)}";
             
             return result;
         }

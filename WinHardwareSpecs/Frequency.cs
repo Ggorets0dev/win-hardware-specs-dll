@@ -10,18 +10,23 @@ namespace WinHardwareSpecs
     public class Frequency
     {
         [JsonProperty("megahertz")]
-        private ushort _megahertz;
+        public int Megahertz { get; set; }
 
         [JsonProperty("gigahertz")]
-        private double _gigahertz;
+        public double Gigahertz { get; set; }
         
-        public ushort GetMegahertz() => _megahertz;
-        public double GetGigahertz(sbyte accuracy = 2) => accuracy != -1 ? Math.Round(_gigahertz, accuracy) : _gigahertz;
+        public double GetGigahertz(sbyte accuracy = 2) => accuracy != -1 ? Math.Round(Gigahertz, accuracy) : Gigahertz;
 
         public Frequency(ushort megahertz)
         {
-            _megahertz = megahertz;
-            _gigahertz = megahertz / 1000.0;
+            Megahertz = megahertz;
+            Gigahertz = megahertz / 1000.0;
+        }
+
+        public Frequency()
+        {
+            Megahertz = 0;
+            Gigahertz = 0;
         }
     }
 }

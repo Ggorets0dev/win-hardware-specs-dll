@@ -11,27 +11,35 @@ namespace WinHardwareSpecs
     {
         static public readonly string systemName = "Win32_Processor";
 
-        private string _name;
-        private string _description;
-        private string _manufacturer;
-        private Frequency _baseClockSpeed;
-        private byte _numberOfCores;
-        private byte _numberOfLogicalProcessors;
+        [JsonProperty("name")]
+        public string Name { get; set;  }
 
-        public string Name => _name;
-        public string Description => _description;
-        public string Manufacturer => _manufacturer;
-        public Frequency BaseClockSpeed => _baseClockSpeed;
+        [JsonProperty("description")]
+        public string Description { get; set; }
+
+        [JsonProperty("manufacturer")]
+        public string Manufacturer { get; set; }
+
+        [JsonProperty("base_clock_speed")]
+        public Frequency BaseClockSpeed { get; set; }
+
+        [JsonProperty("number_of_cores")]
+        public byte NumberOfCores { get; set; }
+
+        [JsonProperty("number_of_logical_processors")]
+        public byte NumberOfLogicalProcessors { get; set; }
 
         public CentralProcessingUnit(string name, string description, string manufacturer, ushort baseClockSpeed, byte numberOfCores, byte numberOfLogicalProcessors) 
-        { 
-            _name = name;
-            _description = description;
-            _manufacturer = manufacturer;
-            _baseClockSpeed = new Frequency(baseClockSpeed);
-            _numberOfCores = numberOfCores;
-            _numberOfLogicalProcessors = numberOfLogicalProcessors;
+        {
+            Name = name;
+            Description = description;
+            Manufacturer = manufacturer;
+            BaseClockSpeed = new Frequency(baseClockSpeed);
+            NumberOfCores = numberOfCores;
+            NumberOfLogicalProcessors = numberOfLogicalProcessors;
         }
+
+        public CentralProcessingUnit() { }
 
         public override void Print() => Console.WriteLine(ToString());
 
@@ -39,12 +47,12 @@ namespace WinHardwareSpecs
         {
             string result = "Характеристики ЦПУ\n";
             
-            result += $"Модель: {ProccessProperty(ref _name)}\n";
-            result += $"Производитель: {ProccessProperty(ref _manufacturer)}\n";
-            result += $"Описание: {ProccessProperty(ref _description)}\n";
-            result += $"Базовая скорость: {_baseClockSpeed.GetGigahertz()} (гигагерц) ~ {_baseClockSpeed.GetMegahertz()} (мегагерц)\n";
-            result += $"Количество ядер: {_numberOfCores}\n";
-            result += $"Количество потоков: {_numberOfLogicalProcessors}";
+            result += $"Модель: {ProccessProperty(Name)}\n";
+            result += $"Производитель: {ProccessProperty(Manufacturer)}\n";
+            result += $"Описание: {ProccessProperty(Description)}\n";
+            result += $"Базовая скорость: {BaseClockSpeed.GetGigahertz()} (гигагерц) ~ {BaseClockSpeed.Megahertz} (мегагерц)\n";
+            result += $"Количество ядер: {NumberOfCores}\n";
+            result += $"Количество потоков: {NumberOfLogicalProcessors}";
             
             return result;
         }

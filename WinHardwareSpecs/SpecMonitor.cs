@@ -16,9 +16,7 @@ namespace WinHardwareSpecs
             try
             {
                 foreach (ManagementObject obj in searcher.Get())
-                {
                     objects.Add(obj);
-                }
             }
             catch (Exception ex)
             {

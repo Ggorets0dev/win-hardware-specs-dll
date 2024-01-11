@@ -10,10 +10,10 @@ namespace WinHardwareSpecs
     {
         protected readonly string _deafultProperty = "Не определено";
 
-        protected string ProccessProperty(ref string property) => property != null ? property : _deafultProperty;
+        protected string ProccessProperty(string property) => property != null ? property : _deafultProperty;
 
-        public virtual void Print() => throw new NotImplementedException();
-        
-        public virtual string ToJson() => JsonConvert.SerializeObject(this, Formatting.Indented);
+        public virtual void Print() => Console.WriteLine(ToString());
+
+        public virtual string ToJson(Formatting format = Formatting.None) => JsonConvert.SerializeObject(this, format);
     }
 }

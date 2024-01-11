@@ -11,35 +11,29 @@ namespace WinHardwareSpecs
     {
         static public readonly string systemName = "Win32_OperatingSystem";
 
-        private string _name;
-        private string _version;
-        private string _serialNumber;
-
         [JsonProperty("name")]
-        public string Name => _name;
+        public string Name { get; set; }
 
         [JsonProperty("version")]
-        public string Version => _version;
+        public string Version { get; set; }
 
         [JsonProperty("serial_number")]
-        public string SerialNumber => _serialNumber;
+        public string SerialNumber { get; set; }
 
         public OperatingSystem(string name, string version, string serialNumber)
         {
-            _name = name;
-            _version = version;
-            _serialNumber = serialNumber;
+            Name = name;
+            Version = version;
+            SerialNumber = serialNumber;
         }
-
-        public override void Print() => Console.WriteLine(ToString());
 
         public override string ToString()
         {
             string result = "Характеристики операционной системы\n";
             
-            result += $"Наименование: {ProccessProperty(ref _name)}\n";
-            result += $"Версия: {ProccessProperty(ref _version)}\n";
-            result += $"Серийный номер: {ProccessProperty(ref _serialNumber)}";
+            result += $"Наименование: {ProccessProperty(Name)}\n";
+            result += $"Версия: {ProccessProperty(Version)}\n";
+            result += $"Серийный номер: {ProccessProperty(SerialNumber)}";
             
             return result;
         }

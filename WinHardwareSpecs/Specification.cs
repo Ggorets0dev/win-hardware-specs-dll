@@ -9,29 +9,24 @@ namespace WinHardwareSpecs
 {
     public class Specification : HardwareItem
     {
-        private List<CentralProcessingUnit> _cpuObjects;
-        private List<GraphicsProcessingUnit> _gpuObjects;
-        private List<PhysicalMemory> _ramOjbects;
-        private List<OperatingSystem> _osObjects;
-
         [JsonProperty("cpu_units")]
-        public List<CentralProcessingUnit> CpuUnits => _cpuObjects;
+        public List<CentralProcessingUnit> CpuUnits { get; set; }
 
         [JsonProperty("gpu_units")]
-        public List<GraphicsProcessingUnit> GpuUnits => _gpuObjects;
+        public List<GraphicsProcessingUnit> GpuUnits { get; set; }
 
         [JsonProperty("ram_units")]
-        public List<PhysicalMemory> RamUnits => _ramOjbects;
+        public List<PhysicalMemory> RamUnits { get; set; }
 
         [JsonProperty("os_units")]
-        public List<OperatingSystem> OsUnits => _osObjects;
+        public List<OperatingSystem> OsUnits { get; set; }
 
         public Specification(List<CentralProcessingUnit> cpuObjects, List<GraphicsProcessingUnit> gpuObjects, List<PhysicalMemory> ramOjbects, List<OperatingSystem> osObjects)
         {
-            _cpuObjects = cpuObjects;
-            _gpuObjects = gpuObjects;
-            _ramOjbects = ramOjbects;
-            _osObjects = osObjects;
+            CpuUnits = cpuObjects;
+            GpuUnits = gpuObjects;
+            RamUnits = ramOjbects;
+            OsUnits = osObjects;
         }
 
         public override void Print() => Console.WriteLine(ToString());
@@ -59,10 +54,10 @@ namespace WinHardwareSpecs
             }
 
             string result = string.Empty;
-            string gpuUnits = UnitsToString(_gpuObjects.Cast<IHardwareItem>().ToList());
-            string cpuUnits = UnitsToString(_cpuObjects.Cast<IHardwareItem>().ToList());
-            string ramUnits = UnitsToString(_ramOjbects.Cast<IHardwareItem>().ToList());
-            string osUnits = UnitsToString(_osObjects.Cast<IHardwareItem>().ToList());
+            string gpuUnits = UnitsToString(GpuUnits.Cast<IHardwareItem>().ToList());
+            string cpuUnits = UnitsToString(CpuUnits.Cast<IHardwareItem>().ToList());
+            string ramUnits = UnitsToString(RamUnits.Cast<IHardwareItem>().ToList());
+            string osUnits = UnitsToString(OsUnits.Cast<IHardwareItem>().ToList());
 
             if (cpuUnits.Length > 0)
                 result += (cpuUnits + "\n\n");

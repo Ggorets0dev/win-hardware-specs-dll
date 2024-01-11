@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Newtonsoft.Json;
 using WinHardwareSpecs;
 
 namespace FunctionalityTest
@@ -12,11 +12,17 @@ namespace FunctionalityTest
     {
         static void Main()
         {
-            var specification = SpecMonitor.GetSpecification();
+            var specificationS = SpecMonitor.GetSpecification();
 
-            specification.Print();
+            var strJson = specificationS.ToJson(Formatting.Indented);
+
+            Console.WriteLine(strJson);
+
             Console.WriteLine("\n");
-            Console.WriteLine(specification.ToJson());
+
+            var specificationD = JsonConvert.DeserializeObject<Specification>(strJson);
+
+            specificationD.Print();
 
             Console.ReadLine();
         }
