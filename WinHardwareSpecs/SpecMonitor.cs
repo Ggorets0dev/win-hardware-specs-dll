@@ -5,6 +5,9 @@ using System.Management;
 
 namespace WinHardwareSpecs
 {
+    /// <summary>
+    /// Инструмент для получения характеристик устройства
+    /// </summary>
     static public class SpecMonitor
     {
         static private List<ManagementObject> GetManagementObjects(string win32Class)
@@ -37,6 +40,10 @@ namespace WinHardwareSpecs
                 return null;
         }
 
+        /// <summary>
+        /// Получить спецификацию данному устройству
+        /// </summary>
+        /// <returns>Спецификация</returns>
         static public Specification GetSpecification()
         {
             return new Specification(
@@ -47,6 +54,12 @@ namespace WinHardwareSpecs
             );
         }
 
+        /// <summary>
+        /// Получить определенную характеристику определенного компонента системы
+        /// </summary>
+        /// <param name="win32Class">Компонент</param>
+        /// <param name="itemField">ХарактеристикаН</param>
+        /// <returns>Характеристики всех компонентов данного вида</returns>
         static public List<string> GetHardwareInfo(string win32Class, string itemField)
         {
             var specs = new List<string>();
@@ -66,6 +79,10 @@ namespace WinHardwareSpecs
             return specs;
         }
     
+        /// <summary>
+        /// Получить объекты операционных систем устройства
+        /// </summary>
+        /// <returns>Операционные системы</returns>
         static public List<OperatingSystem> GetOperatingSystems()
         {
             var operatingSystems = new List<OperatingSystem>();
@@ -91,6 +108,10 @@ namespace WinHardwareSpecs
             return operatingSystems;
         }
 
+        /// <summary>
+        /// Получить объекты ОЗУ устройства
+        /// </summary>
+        /// <returns>Объекты ОЗУ</returns>
         static public List<PhysicalMemory> GetPhysicalMemory() 
         {
             var physicalMemory = new List<PhysicalMemory>();
@@ -117,6 +138,10 @@ namespace WinHardwareSpecs
             return physicalMemory;
         }
 
+        /// <summary>
+        /// Получить объекты ГПУ устройства
+        /// </summary>
+        /// <returns>Объекты ГПУ</returns>
         static public List<GraphicsProcessingUnit> GetGraphicalProcessingUnits()
         {
             var graphicsProcessingUnits = new List<GraphicsProcessingUnit>();
@@ -152,6 +177,10 @@ namespace WinHardwareSpecs
             return graphicsProcessingUnits;
         }
 
+        /// <summary>
+        /// Получить объекты ЦПУ устройства
+        /// </summary>
+        /// <returns>Объекты ЦПУ</returns>
         static public List<CentralProcessingUnit> GetCentralProcessingUnits()
         {
             var centralProcessingUnits = new List<CentralProcessingUnit>();

@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace WinHardwareSpecs
 {
+    /// <summary>
+    /// Все доступные характеристики устройства
+    /// </summary>
     public class Specification : HardwareItem
     {
         [JsonProperty("cpu_units")]

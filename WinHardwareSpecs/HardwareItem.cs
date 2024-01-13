@@ -6,6 +6,9 @@ using System.Text;
 
 namespace WinHardwareSpecs
 {
+    /// <summary>
+    /// Базовый класс компонента устройства
+    /// </summary>
     public abstract class HardwareItem : IHardwareItem
     {
         protected readonly string _deafultProperty = "Не определено";

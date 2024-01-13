@@ -8,6 +8,9 @@ using System.Xml.Linq;
 
 namespace WinHardwareSpecs
 {
+    /// <summary>
+    /// Характеристики ОЗУ
+    /// </summary>
     public class PhysicalMemory : HardwareItem
     {
         static public readonly string systemName = "Win32_PhysicalMemory";
