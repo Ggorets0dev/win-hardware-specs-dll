@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace WinHardwareSpecs
 {
+    /// <summary>
+    /// Характеристики ГПУ
+    /// </summary>
     public class GraphicsProcessingUnit : HardwareItem
     {
         static public readonly string systemName = "Win32_VideoController";
@@ -14,7 +17,7 @@ namespace WinHardwareSpecs
         [JsonProperty("name")]
         public string Name { get; set; }
 
-    [JsonProperty("description")]
+        [JsonProperty("description")]
         public string Description { get; set; }
 
         [JsonProperty("memory_capacity")]

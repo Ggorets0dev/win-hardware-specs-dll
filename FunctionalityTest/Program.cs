@@ -8,6 +8,9 @@ using WinHardwareSpecs;
 
 namespace FunctionalityTest
 {
+    /// <summary>
+    /// Проверка основных компонентов DLL (получение и вывод спецификации)
+    /// </summary>
     internal class Program
     {
         static void Main()

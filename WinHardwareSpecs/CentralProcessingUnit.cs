@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace WinHardwareSpecs
 {
+    /// <summary>
+    /// Характеристики ЦПУ
+    /// </summary>
     public class CentralProcessingUnit : HardwareItem
     {
         static public readonly string systemName = "Win32_Processor";

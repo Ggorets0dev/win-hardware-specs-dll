@@ -2,6 +2,9 @@
 
 namespace WinHardwareSpecs
 {
+    /// <summary>
+    /// Функциональность компонента системы
+    /// </summary>
     internal interface IHardwareItem
     {
         public void Print();
