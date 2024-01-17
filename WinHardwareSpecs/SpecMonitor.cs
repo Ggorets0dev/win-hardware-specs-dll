@@ -16,15 +16,8 @@ namespace WinHardwareSpecs
 
             ManagementObjectSearcher searcher = new ManagementObjectSearcher($"SELECT * FROM {win32Class}");
 
-            try
-            {
-                foreach (ManagementObject obj in searcher.Get())
-                    objects.Add(obj);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            foreach (ManagementObject obj in searcher.Get())
+                objects.Add(obj);
 
             return objects;
         }
@@ -78,23 +71,18 @@ namespace WinHardwareSpecs
         {
             var operatingSystems = new List<OperatingSystem>();
 
-            try
+
+            foreach (ManagementObject currentManagementObject in GetManagementObjects(OperatingSystem.systemName))
             {
-                foreach (ManagementObject currentManagementObject in GetManagementObjects(OperatingSystem.systemName))
-                {
-                    var osObject = new OperatingSystem(
+                var osObject = new OperatingSystem(
                         name: ProcessSpec(currentManagementObject, "Caption"),
                         version: ProcessSpec(currentManagementObject, "Version"),
                         serialNumber: ProcessSpec(currentManagementObject, "SerialNumber")
                     );
 
-                    operatingSystems.Add(osObject);
-                }
+                operatingSystems.Add(osObject);
             }
-            catch
-            {
-                throw new Exception();
-            }
+
 
             return operatingSystems;
         }
@@ -107,23 +95,16 @@ namespace WinHardwareSpecs
         {
             var physicalMemory = new List<PhysicalMemory>();
 
-            try
+            foreach (ManagementObject currentManagementObject in GetManagementObjects(PhysicalMemory.systemName))
             {
-                foreach (ManagementObject currentManagementObject in GetManagementObjects(PhysicalMemory.systemName))
-                {
-                    var physicalMemoryObject = new PhysicalMemory(
+                var physicalMemoryObject = new PhysicalMemory(
                         partNumber: ProcessSpec(currentManagementObject, "PartNumber"),
                         manufacturer: ProcessSpec(currentManagementObject, "Manufacturer"),
                         bytesCapacity: ulong.Parse(ProcessSpec(currentManagementObject, "Capacity")),
                         clockSpeed: ushort.Parse(ProcessSpec(currentManagementObject, "Speed"))
                     );
 
-                    physicalMemory.Add(physicalMemoryObject);
-                }
-            }
-            catch
-            {
-                throw new Exception();
+                physicalMemory.Add(physicalMemoryObject);
             }
 
             return physicalMemory;
@@ -137,32 +118,25 @@ namespace WinHardwareSpecs
         {
             var graphicsProcessingUnits = new List<GraphicsProcessingUnit>();
 
-            try
+            foreach (ManagementObject currentManagementObject in GetManagementObjects(GraphicsProcessingUnit.systemName))
             {
-                foreach (ManagementObject currentManagementObject in GetManagementObjects(GraphicsProcessingUnit.systemName))
-                {
-                    string name = ProcessSpec(currentManagementObject, "Name");
-                    string description = ProcessSpec(currentManagementObject, "VideoProcessor");
-                    string driverVersion = ProcessSpec(currentManagementObject, "DriverVersion");
+                string name = ProcessSpec(currentManagementObject, "Name");
+                string description = ProcessSpec(currentManagementObject, "VideoProcessor");
+                string driverVersion = ProcessSpec(currentManagementObject, "DriverVersion");
 
-                    ulong bytesMemoryCapacity;
-                    string bytesMemoryCapacityBuffer = ProcessSpec(currentManagementObject, "AdapterRAM");
+                ulong bytesMemoryCapacity;
+                string bytesMemoryCapacityBuffer = ProcessSpec(currentManagementObject, "AdapterRAM");
                     
-                    ulong.TryParse(bytesMemoryCapacityBuffer, out bytesMemoryCapacity);
+                ulong.TryParse(bytesMemoryCapacityBuffer, out bytesMemoryCapacity);
 
-                    var graphicalProcessingUnitObject = new GraphicsProcessingUnit(
+                var graphicalProcessingUnitObject = new GraphicsProcessingUnit(
                         name: name,
                         description: description,
                         bytesMemoryCapacity: bytesMemoryCapacity,
                         driverVersion: driverVersion
                     );
 
-                    graphicsProcessingUnits.Add(graphicalProcessingUnitObject);
-                }
-            }
-            catch
-            {
-                throw new Exception();
+                graphicsProcessingUnits.Add(graphicalProcessingUnitObject);
             }
 
             return graphicsProcessingUnits;
@@ -176,11 +150,9 @@ namespace WinHardwareSpecs
         {
             var centralProcessingUnits = new List<CentralProcessingUnit>();
 
-            try
-            {
-                foreach (ManagementObject currentManagementObject in GetManagementObjects(CentralProcessingUnit.systemName))
-                {
-                    var centralProcessingUnitObject = new CentralProcessingUnit(
+             foreach (ManagementObject currentManagementObject in GetManagementObjects(CentralProcessingUnit.systemName))
+             {
+                var centralProcessingUnitObject = new CentralProcessingUnit(
                         name: ProcessSpec(currentManagementObject, "Name"),
                         description: ProcessSpec(currentManagementObject, "Description"),
                         baseClockSpeed: ushort.Parse(ProcessSpec(currentManagementObject, "CurrentClockSpeed")),
@@ -189,13 +161,8 @@ namespace WinHardwareSpecs
                         numberOfLogicalProcessors: byte.Parse(ProcessSpec(currentManagementObject, "NumberOfLogicalProcessors"))
                     );
 
-                    centralProcessingUnits.Add(centralProcessingUnitObject);
-                }
-            }
-            catch
-            {
-                throw new Exception();
-            }
+                centralProcessingUnits.Add(centralProcessingUnitObject);
+             }
 
             return centralProcessingUnits;
         }
