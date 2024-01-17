@@ -51,17 +51,8 @@ namespace WinHardwareSpecs
         {
             var specs = new List<string>();
 
-            try
-            {
-                foreach (ManagementObject obj in GetManagementObjects(win32Class))
-                {
-                    specs.Add(obj[itemField].ToString().Trim());
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            foreach (ManagementObject obj in GetManagementObjects(win32Class))
+                specs.Add(obj[itemField].ToString().Trim());
 
             return specs;
         }
@@ -83,9 +74,9 @@ namespace WinHardwareSpecs
                     operatingSystems.Add(osObject);
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                Console.WriteLine(ex.Message);
+                throw new Exception();
             }
 
             return operatingSystems;
@@ -109,9 +100,9 @@ namespace WinHardwareSpecs
                     physicalMemory.Add(physicalMemoryObject);
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                Console.WriteLine(ex.Message);
+                throw new Exception();
             }
 
             return physicalMemory;
@@ -144,9 +135,9 @@ namespace WinHardwareSpecs
                     graphicsProcessingUnits.Add(graphicalProcessingUnitObject);
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                Console.WriteLine(ex.Message);
+                throw new Exception();
             }
 
             return graphicsProcessingUnits;
@@ -172,9 +163,9 @@ namespace WinHardwareSpecs
                     centralProcessingUnits.Add(centralProcessingUnitObject);
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                Console.WriteLine(ex.Message);
+                throw new Exception();
             }
 
             return centralProcessingUnits;

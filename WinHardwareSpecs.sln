@@ -5,7 +5,9 @@ VisualStudioVersion = 17.7.34024.191
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinHardwareSpecs", "WinHardwareSpecs\WinHardwareSpecs.csproj", "{81F0F98A-2AE2-4B64-BF0B-E03A8D16365C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionalityTest", "FunctionalityTest\FunctionalityTest.csproj", "{77A091C5-E2F1-4EFD-B31E-EC42B379F38B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example", "FunctionalityTest\Example.csproj", "{77A091C5-E2F1-4EFD-B31E-EC42B379F38B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{6356B10D-16D9-4C00-9E9E-2B162FCEB5BC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{77A091C5-E2F1-4EFD-B31E-EC42B379F38B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77A091C5-E2F1-4EFD-B31E-EC42B379F38B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77A091C5-E2F1-4EFD-B31E-EC42B379F38B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6356B10D-16D9-4C00-9E9E-2B162FCEB5BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6356B10D-16D9-4C00-9E9E-2B162FCEB5BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6356B10D-16D9-4C00-9E9E-2B162FCEB5BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6356B10D-16D9-4C00-9E9E-2B162FCEB5BC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
