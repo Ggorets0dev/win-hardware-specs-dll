@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using WinHardwareSpecs;
 
-namespace FunctionalityTest
+namespace Example
 {
     /// <summary>
     /// Проверка основных компонентов DLL (получение и вывод спецификации)

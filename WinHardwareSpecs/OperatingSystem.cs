@@ -7,6 +7,9 @@ using Newtonsoft.Json;
 
 namespace WinHardwareSpecs
 {
+    /// <summary>
+    /// Характеристики ОС
+    /// </summary>
     public class OperatingSystem : HardwareItem
     {
         static public readonly string systemName = "Win32_OperatingSystem";

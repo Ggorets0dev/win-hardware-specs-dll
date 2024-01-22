@@ -7,6 +7,9 @@ using Newtonsoft.Json;
 
 namespace AllUnitTests
 {
+    /// <summary>
+    /// Проверка обнаружения устройств в ПК
+    /// </summary>
     public class GetHardwareItemsUnitTest
     {
         [Fact]
@@ -38,6 +41,9 @@ namespace AllUnitTests
         }
     }
 
+    /// <summary>
+    /// Проверка получения характеристики устройств
+    /// </summary>
     public class CheckHardwareItemsUnitTest
     {
         [Fact]
@@ -89,6 +95,9 @@ namespace AllUnitTests
         }
     }
 
+    /// <summary>
+    /// Проверка получения полной спецификации ПК
+    /// </summary>
     public class SpecificationUnitTest
     {
         [Fact]
